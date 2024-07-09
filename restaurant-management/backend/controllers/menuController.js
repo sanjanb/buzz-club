@@ -1,9 +1,10 @@
+// controllers/menuController.js
 const MenuItem = require("../models/MenuItem");
 
 exports.getMenuItems = async (req, res) => {
   try {
-    const items = await MenuItem.find();
-    res.json(items);
+    const menuItems = await MenuItem.find();
+    res.json(menuItems);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -11,12 +12,14 @@ exports.getMenuItems = async (req, res) => {
 
 exports.addMenuItem = async (req, res) => {
   const { name, description, price } = req.body;
-  const newItem = new MenuItem({ name, description, price });
+  const newMenuItem = new MenuItem({ name, description, price });
 
   try {
-    const savedItem = await newItem.save();
-    res.json(savedItem);
+    const savedMenuItem = await newMenuItem.save();
+    res.json(savedMenuItem);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 };
+
+// Add other CRUD operations as needed

@@ -1,3 +1,4 @@
+// controllers/feedbackController.js
 const Feedback = require("../models/Feedback");
 
 exports.getFeedback = async (req, res) => {
