@@ -1,6 +1,6 @@
-// controllers/feedbackController.js
 const Feedback = require("../models/Feedback");
 
+// Get all feedback
 exports.getFeedback = async (req, res) => {
   try {
     const feedback = await Feedback.find();
@@ -10,6 +10,19 @@ exports.getFeedback = async (req, res) => {
   }
 };
 
+// Get a single feedback by ID
+exports.getFeedbackById = async (req, res) => {
+  try {
+    const feedback = await Feedback.findById(req.params.id);
+    if (!feedback)
+      return res.status(404).json({ message: "Feedback not found" });
+    res.json(feedback);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// Add new feedback
 exports.addFeedback = async (req, res) => {
   const { customerName, comments, rating } = req.body;
   const newFeedback = new Feedback({ customerName, comments, rating });
@@ -22,4 +35,36 @@ exports.addFeedback = async (req, res) => {
   }
 };
 
-// Add other CRUD operations as needed
+// Update feedback
+exports.updateFeedback = async (req, res) => {
+  const { customerName, comments, rating } = req.body;
+
+  try {
+    const feedback = await Feedback.findById(req.params.id);
+    if (!feedback)
+      return res.status(404).json({ message: "Feedback not found" });
+
+    feedback.customerName = customerName ?? feedback.customerName;
+    feedback.comments = comments ?? feedback.comments;
+    feedback.rating = rating ?? feedback.rating;
+
+    const updatedFeedback = await feedback.save();
+    res.json(updatedFeedback);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+// Delete feedback
+exports.deleteFeedback = async (req, res) => {
+  try {
+    const feedback = await Feedback.findById(req.params.id);
+    if (!feedback)
+      return res.status(404).json({ message: "Feedback not found" });
+
+    await feedback.remove();
+    res.json({ message: "Feedback deleted" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
