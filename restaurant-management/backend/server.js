@@ -1,21 +1,41 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const cors = require("cors");
-const connectDB = require("./config/db");
+const mongoose = require("mongoose");
 
+// Set up server
 const app = express();
 
-// Connect to MongoDB
-connectDB();
-
-// Middleware
-app.use(bodyParser.json());
+// Enable CORS
 app.use(cors());
 
-// Routes
-app.use("/api/orders", require("./routes/orderRoutes"));
-app.use("/api/feedback", require("./routes/feedbackRoutes"));
-app.use("/api/menu", require("./routes/menuRoutes"));
+// Other middlewares
+app.use(express.json());
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Import routes
+const orderRoutes = require("./routes/orderRoutes");
+const feedbackRoutes = require("./routes/feedbackRoutes");
+const menuRoutes = require("./routes/menuRoutes");
+
+// Use routes
+app.use("/orders", orderRoutes);
+app.use("/feedback", feedbackRoutes);
+app.use("/menu", menuRoutes);
+
+// Connect to MongoDB
+mongoose
+  .connect("mongodb://localhost:27017/restaurant_management", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.error("Failed to connect to MongoDB", err);
+  });
+
+// Start server
+const PORT = 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
