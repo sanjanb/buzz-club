@@ -1,11 +1,17 @@
-// routes/menuRoutes.js
 const express = require("express");
-const { getMenuItems, addMenuItem } = require("../controllers/menuController");
+const {
+  getMenuItems,
+  getMenuItemById,
+  addMenuItem,
+  updateMenuItem,
+  deleteMenuItem,
+} = require("../controllers/menuController");
 const router = express.Router();
 
 router.get("/", getMenuItems);
+router.get("/:id", getMenuItemById);
 router.post("/", addMenuItem);
-
-// Add other CRUD operations as needed
+router.put("/:id", updateMenuItem);
+router.delete("/:id", deleteMenuItem);
 
 module.exports = router;
