@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import OrderList from "./components/OrderList";
+import OrderForm from "./components/OrderForm";
+import FeedbackList from "./components/FeedbackList";
+import FeedbackForm from "./components/FeedbackForm";
+import MenuItemList from "./components/MenuItemList";
+import MenuItemForm from "./components/MenuItemForm";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Restaurant Management System</h1>
+      <OrderForm />
+      <OrderList />
+      <FeedbackForm />
+      <FeedbackList />
+      <MenuItemForm />
+      <MenuItemList />
     </div>
   );
-}
+};
 
 export default App;
