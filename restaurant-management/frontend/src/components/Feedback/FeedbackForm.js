@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createFeedback } from "../services/feedbackService";
+import { createFeedback } from "../../services/feedbackService";
 
 const FeedbackForm = () => {
   const [customerName, setCustomerName] = useState("");
