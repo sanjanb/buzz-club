@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getFeedback } from "../services/feedbackService";
+import { getFeedback } from "../../services/feedbackService";
 
 const FeedbackList = () => {
   const [feedback, setFeedback] = useState([]);

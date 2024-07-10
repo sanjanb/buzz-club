@@ -5,7 +5,7 @@ import MenuItemList from "../components/Menu/MenuItemList";
 const MenuPage = () => {
   return (
     <div>
-      <h2>Menu</h2>
+      <h2>Menu Page</h2>
       <MenuItemForm />
       <MenuItemList />
     </div>
