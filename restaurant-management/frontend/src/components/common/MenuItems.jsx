@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getMenuItems } from "../services/menuService";
+import { getMenuItems } from "../../services/menuService";
 
 const MenuItems = () => {
   const [menuItems, setMenuItems] = useState([]);
