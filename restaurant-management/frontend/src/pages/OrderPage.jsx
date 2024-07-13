@@ -1,13 +1,14 @@
 import React from "react";
-import OrderForm from "../components/Orders/OrderForm";
+import Navbar from "../components/common/Navbar";
 import OrderList from "../components/Orders/OrderList";
+import Footer from "../components/common/Footer";
 
 const OrderPage = () => {
   return (
     <div>
-      <h2>Orders</h2>
-      <OrderForm />
+      <Navbar />
       <OrderList />
+      <Footer />
     </div>
   );
 };
